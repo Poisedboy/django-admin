@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,14 +80,19 @@ WSGI_APPLICATION = 'lbb.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        # 'USER': 'postgres',
-        # 'PASSWORD': 'ElephantDB12.',
-        'HOST': 'localhost',
-        'PORT': '5432',      
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgres://bll_user:z4Y33SQN2haLt879OtkmN481YudVZ26Z@dpg-cocini63e1ms73b4tkd0-a.frankfurt-postgres.render.com/bll',
+        conn_max_age=600
+    )
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'postgres',
+    #     # 'USER': 'postgres',
+    #     # 'PASSWORD': 'ElephantDB12.',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',      
+    # }
 }
 
 
@@ -123,6 +131,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
