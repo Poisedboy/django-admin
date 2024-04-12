@@ -1,8 +1,8 @@
 databases:
-  - name: mysitedb
+  - name: test-django
     plan: free
-    databaseName: mysite
-    user: mysite
+    databaseName: bll
+    user: bll_user
 
 services:
   - type: web
