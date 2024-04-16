@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-9ah3n*f8s(6l0^c+c22ue+-(hg*-z!*ny5r5s67hxc%r7y@^$t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-admin-t26g.onrender.com']
+ALLOWED_HOSTS = ['django-admin-t26g.onrender.com', '127.0.0.1']
 
 
 # Application definition
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'movie.apps.MovieConfig',
     'award',
     'users',
+    'careers',
+    'location_field'
 ]
 
 MIDDLEWARE = [

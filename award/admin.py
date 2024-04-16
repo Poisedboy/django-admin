@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import AwardBanner, AwardCategory, AwardEntry
+from .models import AwardBanner, AwardCategory, AwardEntry, AwardJury, Region, AwardResult, AwardShows, AwardSponsor, AwardMedia, CategoryMediumRegion, CountryForJuryAllotment, Side, TaggedCompanies
 from utils.export_csv_file import export_selected_objects_as_csv
 
 class AwardBannerInline (admin.TabularInline):
@@ -59,6 +59,63 @@ class AwardEntryAdmin (admin.ModelAdmin):
     )
     actions = [export_selected_objects_as_csv]
 
+class AwardJuryInline (admin.TabularInline):
+    model = AwardJury
+
+class AwardJuryAdmin (admin.ModelAdmin):
+        list_display = ('name', 'job_title', 'award_show', 'user_id', 'is_super', 'hide_from_final_judging')
+        list_filter = ('award_show', 'is_super', 'hide_from_final_judging')
+        search_fields = ('name', 'job_title', 'award_show')
+
+class AwardRegionInline (admin.TabularInline):
+    model = Region
+
+class AwardRegionAdmin (admin.ModelAdmin):
+    list_display = ('id', 'name',)
+
+class AwardResultInline (admin.TabularInline):
+    model = AwardResult
+
+class AwardResultAdmin (admin.ModelAdmin):
+    list_display = ('id', 'award_name', 'min_score', 'max_score', 'award_show')
+
+class AwardShowsInline (admin.TabularInline):
+    model = AwardShows
+
+class AwardShowsAdmin (admin.ModelAdmin):
+    list_display = ('id', 'name', 'office',)
+
+class AwardSponsorInline (admin.TabularInline):
+    model = AwardSponsor
+
+class AwardSponsorAdmin (admin.ModelAdmin):
+    list_display = ('id', 'title', 'url',)
+
+class AwardMediaAdmin (admin.ModelAdmin):
+    list_display = ('id', 'name')
+
+class CategoryMediumRegionAdmin (admin.ModelAdmin):
+    list_display = ('id', 'category', 'medium')
+
+class CountryForJuryAllotmentAdmin (admin.ModelAdmin):
+    list_display = ('id', 'name', 'region')
+
+class SideAdmin (admin.ModelAdmin):
+    list_display = ('id', 'title', 'clicks', 'order')
+
+class TaggedCompaniesAdmin (admin.ModelAdmin):
+    list_display = ('id', 'entry', 'company', 'score')
+
 admin.site.register(AwardBanner, AwardBannerAdmin)
 admin.site.register(AwardCategory, AwardCategoriesAdmin)
 admin.site.register(AwardEntry, AwardEntryAdmin)
+admin.site.register(AwardJury, AwardJuryAdmin)
+admin.site.register(Region, AwardRegionAdmin)
+admin.site.register(AwardResult, AwardResultAdmin)
+admin.site.register(AwardShows, AwardShowsAdmin)
+admin.site.register(AwardSponsor, AwardSponsorAdmin)
+admin.site.register(AwardMedia, AwardMediaAdmin)
+admin.site.register(CategoryMediumRegion, CategoryMediumRegionAdmin)
+admin.site.register(CountryForJuryAllotment, CountryForJuryAllotmentAdmin)
+admin.site.register(Side, SideAdmin)
+admin.site.register(TaggedCompanies, TaggedCompaniesAdmin)
