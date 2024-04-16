@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'movie.apps.MovieConfig',
     'award',
     'users',
+    'careers',
+    'location_field'
 ]
 
 MIDDLEWARE = [
