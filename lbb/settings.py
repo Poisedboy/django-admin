@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'award',
     'users',
     'careers',
-    'location_field'
+    'location_field',
+    'collection'
 ]
 
 MIDDLEWARE = [
