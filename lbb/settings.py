@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     "award",
     "users",
     "careers",
+    "location_field.apps.DefaultConfig",
+    "collection",
+    "company",
 ]
 
 MIDDLEWARE = [
