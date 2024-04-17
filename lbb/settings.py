@@ -43,9 +43,7 @@ INSTALLED_APPS = [
     "award",
     "users",
     "careers",
-    "location_field.apps.DefaultConfig",
     "collection",
-    "company",
 ]
 
 MIDDLEWARE = [
@@ -84,19 +82,14 @@ WSGI_APPLICATION = "lbb.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default="postgres://bll_user:z4Y33SQN2haLt879OtkmN481YudVZ26Z@dpg-cocini63e1ms73b4tkd0-a.frankfurt-postgres.render.com/bll",
-        conn_max_age=600,
-    )
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'postgres',
-    #     # 'USER': 'postgres',
-    #     # 'PASSWORD': 'ElephantDB12.',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432',
-    # }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        # 'USER': 'postgres',
+        # 'PASSWORD': 'Pass',
+        "HOST": "localhost",
+        "PORT": "5432",
+    }
 }
 
 

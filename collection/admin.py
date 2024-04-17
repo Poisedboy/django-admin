@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Collection
+from .models import CollectionItem, Collections
 
-class CollectionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'collection_name']
-
-admin.site.register(Collection, CollectionAdmin)
+admin.site.register(Collections)
+admin.site.register(CollectionItem)
